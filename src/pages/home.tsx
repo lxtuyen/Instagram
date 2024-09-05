@@ -4,20 +4,64 @@ import { Link } from "react-router-dom";
 import Post from "@/components/post";
 import React from "react";
 import SkeletonTag from "@/components/skeletonTag";
+import { Avatar } from "antd";
+import { Input } from "@/components/ui/input";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import UploadStory from "@/components/upload";
+import { Button } from "@/components/ui/button";
 
 export default function Home() {
   const [loading, setLoading] = React.useState<boolean>(true);
 
-    setTimeout(() => {
-      setLoading(false);
-    }, 3000);
+  setTimeout(() => {
+    setLoading(false);
+  }, 3000);
 
   return (
     <div className="bg-[#FCFCFC] px-6 py-3 flex">
-      <div className="flex flex-col w-2/3">
-        <div className="flex justify-center my-5">
+      <div className="flex gap-5 flex-col w-2/3 justify-center">
+        <div className="flex justify-center">
           <CarouselList />
         </div>
+        <Dialog>
+          <DialogTrigger asChild>
+            <div className="flex gap-2 items-center justify-center ">
+              <Avatar
+                className="size-12"
+                src="https://chatscope.io/storybook/react/assets/emily-xzL8sDL2.svg"
+              />
+              <Input
+                className="bg-gray-300 !cursor-pointer w-2/3 rounded-2xl sm:max-w-[420px]"
+                placeholder="Bạn đang nghĩ gì thế?"
+              />
+            </div>
+          </DialogTrigger>
+          <DialogContent className="sm:max-w-[425px]">
+            <DialogHeader>
+              <DialogTitle>Thêm bài viết mới</DialogTitle>
+              <DialogDescription>
+                Chia sẻ nhưng kỉ niệm với bạn bè của mình.
+              </DialogDescription>
+            </DialogHeader>
+            <Input
+              placeholder="Bạn đang nghĩ gì thế?"
+              className="border-none"
+              type="text"
+            />
+            <UploadStory />
+            <DialogFooter>
+              <Button type="submit">Xác nhận</Button>
+            </DialogFooter>
+          </DialogContent>
+        </Dialog>
         <div className="flex justify-center">
           <Post />
         </div>

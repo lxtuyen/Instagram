@@ -14,14 +14,14 @@ export default function Profile() {
 
   return (
     <Container>
-      <div className="flex gap-2 mb-5">
+      <div className="flex gap-2 my-5">
         <Avatar
           size="lg"
           name="Emily"
           src="https://chatscope.io/storybook/react/assets/emily-xzL8sDL2.svg"
         />
         <div className="flex flex-col">
-          <div className="flex gap-2">
+          <div className="flex gap-2 items-center">
             <div className="flex flex-col justify-center items-center">
               <span className="font-medium">xuan tuyen</span>
               <span>cuaa.xt19</span>
