@@ -1,9 +1,9 @@
-import { SearchItem } from "@/components/SearchItem";
+import { UserSearchCard } from "@/components/userCard/UserSearchCard";
 import { CarouselUser } from "@/components/CarouselStory";
 import { Link } from "react-router-dom";
-import Post from "@/components/post";
+import Post from "@/components/Post";
 import React from "react";
-import SkeletonTag from "@/components/skeletonTag";
+import SkeletonTag from "@/components/SkeletonTag";
 import { Avatar } from "antd";
 import { Input } from "@/components/ui/input";
 import {
@@ -15,7 +15,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import UploadStory from "@/components/upload";
+import UploadStory from "@/components/Upload";
 import { Button } from "@/components/ui/button";
 
 export default function Home() {
@@ -39,7 +39,7 @@ export default function Home() {
                 src="https://chatscope.io/storybook/react/assets/emily-xzL8sDL2.svg"
               />
               <Input
-                className="bg-gray-300 !cursor-pointer w-2/3 rounded-2xl sm:max-w-[420px]"
+                className="bg-gray-200 !cursor-pointer w-2/3 rounded-2xl sm:max-w-[420px]"
                 placeholder="Bạn đang nghĩ gì thế?"
               />
             </div>
@@ -71,7 +71,7 @@ export default function Home() {
           <span className="font-semibold text-gray-500 text-lg ">
             Gợi ý cho bạn
           </span>
-          <Link className="hover:text-gray-400 font-medium" to={"/"}>
+          <Link className="hover:text-gray-400 font-medium" to={"/suggested"}>
             Xem tất cả
           </Link>
         </div>
@@ -85,10 +85,10 @@ export default function Home() {
             </>
           ) : (
             <>
-              <SearchItem fullName="nguyen van a" username="Cuaaa.45" />
-              <SearchItem fullName="nguyen van a" username="Cuaaa.45" />
-              <SearchItem fullName="nguyen van a" username="Cuaaa.45" />
-              <SearchItem fullName="nguyen van a" username="Cuaaa.45" />
+              <UserSearchCard fullName="nguyen van a" username="Cuaaa.45" />
+              <UserSearchCard fullName="nguyen van a" username="Cuaaa.45" />
+              <UserSearchCard fullName="nguyen van a" username="Cuaaa.45" />
+              <UserSearchCard fullName="nguyen van a" username="Cuaaa.45" />
             </>
           )}
         </div>

@@ -1,8 +1,12 @@
 import { Avatar } from "antd";
 import { Link } from "react-router-dom";
 import React from "react";
-import { HoverCard, HoverCardContent, HoverCardTrigger } from "./ui/hover-card";
-import { Button } from "./ui/button";
+import {
+  HoverCard,
+  HoverCardContent,
+  HoverCardTrigger,
+} from "../ui/hover-card";
+import { Button } from "../ui/button";
 
 interface ISidebarLinkProps {
   fullName: string;
@@ -10,7 +14,7 @@ interface ISidebarLinkProps {
   id?: number;
 }
 
-export function SearchItem({ fullName, username }: ISidebarLinkProps) {
+export function UserSearchCard({ fullName, username }: ISidebarLinkProps) {
   const [follow, setFollow] = React.useState<boolean>(false);
   const onClick = () => {
     setFollow(!follow);
@@ -28,14 +32,14 @@ export function SearchItem({ fullName, username }: ISidebarLinkProps) {
           <HoverCardContent className="w-96">
             <div className="">
               <div className="flex gap-2">
-              <Avatar
-                className="size-12"
-                src="https://chatscope.io/storybook/react/assets/emily-xzL8sDL2.svg"
-              />
-              <div className="flex flex-col">
-                <span className="font-semibold">oafnghh</span>
-                <span>Lê Minh Hoàng</span>
-              </div>
+                <Avatar
+                  className="size-12"
+                  src="https://chatscope.io/storybook/react/assets/emily-xzL8sDL2.svg"
+                />
+                <div className="flex flex-col">
+                  <span className="font-semibold">oafnghh</span>
+                  <span>Lê Minh Hoàng</span>
+                </div>
               </div>
               <div className="p-5 border-b-2 flex gap-4 justify-center">
                 <div className="flex flex-col  items-center">
@@ -51,8 +55,11 @@ export function SearchItem({ fullName, username }: ISidebarLinkProps) {
                   <span>đang theo dõi</span>
                 </div>
               </div>
-              <Button className="mt-5 w-full bg-cyan-500 hover:bg-cyan-600" variant={"default"}>
-                  Theo dõi
+              <Button
+                className="mt-5 w-full bg-cyan-500 hover:bg-cyan-600"
+                variant={"default"}
+              >
+                Theo dõi
               </Button>
             </div>
           </HoverCardContent>

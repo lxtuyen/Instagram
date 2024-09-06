@@ -8,7 +8,7 @@ interface ISidebarLinkProps {
     id?: number;
   }
 
-export function StoryItem({ username}:ISidebarLinkProps) {
+export function UserStoryCard({ username}:ISidebarLinkProps) {
   const [watched] = React.useState<boolean>(false);
   return (
     <Link  to={"/"} className='flex flex-col items-center p-3 rounded-md'>

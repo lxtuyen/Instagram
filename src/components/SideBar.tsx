@@ -6,7 +6,7 @@ import { Drawer } from "antd";
 import Logo from "./Logo";
 import { Input } from "./ui/input";
 import UseDebounce from "@/hooks/useDebounce";
-import { SearchItem } from "./SearchItem";
+import { UserSearchCard } from "./userCard/UserSearchCard";
 import IconOutlineHeart2 from "@/icon/IconOutlineHeart2";
 import { IoExitOutline } from "react-icons/io5";
 
@@ -24,10 +24,9 @@ const Sidebar = () => {
         ></SidebarLink>
       ))}
       <div className=" hover:bg-gray-100  px-4 py-5 flex items-center gap-3 font-normal text-lg">
-      <IoExitOutline className="size-7" />
-      <span>Đăng xuất</span>
+        <IoExitOutline className="size-7" />
+        <span>Đăng xuất</span>
       </div>
-      
     </div>
   );
 };
@@ -93,15 +92,15 @@ function SidebarLink({ link, isActive }: ISidebarLinkProps) {
             type="search"
           />
           {debounced ? (
-           <SearchItem fullName="le xuan tuyen" username="Cuaaa" />
+            <UserSearchCard fullName="le xuan tuyen" username="Cuaaa" />
           ) : (
             <>
-            <hr />
-            <h2 className="w-full my-5 font-bold size-7 text-lg">Gần đây</h2>
-            <div className="flex justify-center items-center">
-              <p>không có nội dung tìm kiếm mới đây.</p>
-            </div>
-          </>
+              <hr />
+              <h2 className="w-full my-5 font-bold size-7 text-lg">Gần đây</h2>
+              <div className="flex justify-center items-center">
+                <p>không có nội dung tìm kiếm mới đây.</p>
+              </div>
+            </>
           )}
         </Drawer>
       ) : (
@@ -116,7 +115,10 @@ function SidebarLink({ link, isActive }: ISidebarLinkProps) {
           <div className="flex flex-col items-center justify-center">
             <IconOutlineHeart2 />
             <span className="my-3">Hoạt động trên bài viết của bạn</span>
-            <span className="text-center">Khi có người thích hoặc bình luận về một trong những bài viết của bạn, bạn sẽ nhìn thấy nó ở đây.</span>
+            <span className="text-center">
+              Khi có người thích hoặc bình luận về một trong những bài viết của
+              bạn, bạn sẽ nhìn thấy nó ở đây.
+            </span>
           </div>
         </Drawer>
       )}

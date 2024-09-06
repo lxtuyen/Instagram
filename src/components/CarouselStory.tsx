@@ -5,7 +5,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import { StoryItem } from "./StoryItem";
+import { UserStoryCard } from "./userCard/UserStoryCard";
 import IconAdd from "@/icon/IconAdd";
 import {
   Dialog,
@@ -17,7 +17,7 @@ import {
   DialogTrigger,
 } from "./ui/dialog";
 import { Button } from "./ui/button";
-import UploadStory from "./upload";
+import UploadStory from "./Upload";
 
 export function CarouselUser() {
   const handleAdd = () => {};
@@ -29,7 +29,10 @@ export function CarouselUser() {
           <CarouselItem key={9} className="pl-1 md:basis-1/2 lg:basis-1/5">
             <Dialog>
               <DialogTrigger asChild>
-                <div onClick={handleAdd} className="cursor-pointer flex flex-col items-center">
+                <div
+                  onClick={handleAdd}
+                  className="cursor-pointer flex flex-col items-center"
+                >
                   <IconAdd />
                   <span>Mới</span>
                 </div>
@@ -54,7 +57,7 @@ export function CarouselUser() {
               className="pl-1 md:basis-1/2 lg:basis-1/5"
             >
               <div className="p-1">
-                <StoryItem username="Cuaaa" />
+                <UserStoryCard username="Cuaaa" />
               </div>
             </CarouselItem>
           ))}
@@ -66,9 +69,6 @@ export function CarouselUser() {
   );
 }
 
-export function CarouselStory(){
-  return (
-    <>
-    </>
-  )
+export function CarouselStory() {
+  return <></>;
 }

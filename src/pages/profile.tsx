@@ -5,7 +5,7 @@ import { FaRegMessage } from "react-icons/fa6";
 import IconOutlineHeart from "@/icon/IconOutlineHeart";
 import React from "react";
 import IconOutlineCamera from "@/icon/IconOutlineCamera";
-import Container from "@/components/container";
+import Container from "@/components/Container";
 import { CarouselUser } from "@/components/CarouselStory";
 
 export default function Profile() {

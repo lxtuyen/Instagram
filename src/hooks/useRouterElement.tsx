@@ -4,6 +4,7 @@ import { Login } from '@/pages/auth/login';
 import { Register } from '@/pages/auth/register';
 import Home from '@/pages/home';
 import Messages from '@/pages/messages';
+import Suggested from '@/pages/suggested';
 import { useContext } from 'react';
 import Profile from '@/pages/profile';
 import { Navigate, useRoutes } from 'react-router-dom';
@@ -17,6 +18,7 @@ export default function useRoutesElements() {
   const routeElements = useRoutes([
     { path: '/', element: <LayoutMain children={<Home />} /> },
     { path: '/messages', element: <LayoutMain children={<Messages />} /> },
+    { path: '/suggested', element: <LayoutMain children={<Suggested />} /> },
     {
       path: '/login',
       element: isAuthenticated ? <Navigate to='/' /> : <Login />,
