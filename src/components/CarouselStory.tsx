@@ -19,7 +19,7 @@ import {
 import { Button } from "./ui/button";
 import UploadStory from "./upload";
 
-export function CarouselList() {
+export function CarouselUser() {
   const handleAdd = () => {};
 
   return (
@@ -64,4 +64,11 @@ export function CarouselList() {
       </Carousel>
     </>
   );
+}
+
+export function CarouselStory(){
+  return (
+    <>
+    </>
+  )
 }

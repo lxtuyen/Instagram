@@ -34,6 +34,6 @@ export const FormSchemaRegister = z.object({
 });
 
 export const FormSchemaComments = z.object({
-  comment: z
+  text: z
     .string()
 });

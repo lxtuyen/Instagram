@@ -1,5 +1,5 @@
 import { SearchItem } from "@/components/SearchItem";
-import { CarouselList } from "@/components/CarouselStory";
+import { CarouselUser } from "@/components/CarouselStory";
 import { Link } from "react-router-dom";
 import Post from "@/components/post";
 import React from "react";
@@ -29,7 +29,7 @@ export default function Home() {
     <div className="bg-[#FCFCFC] px-6 py-3 flex">
       <div className="flex gap-5 flex-col w-2/3 justify-center">
         <div className="flex justify-center">
-          <CarouselList />
+          <CarouselUser />
         </div>
         <Dialog>
           <DialogTrigger asChild>

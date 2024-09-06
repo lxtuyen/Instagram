@@ -6,7 +6,7 @@ import IconOutlineHeart from "@/icon/IconOutlineHeart";
 import React from "react";
 import IconOutlineCamera from "@/icon/IconOutlineCamera";
 import Container from "@/components/container";
-import { CarouselList } from "@/components/CarouselStory";
+import { CarouselUser } from "@/components/CarouselStory";
 
 export default function Profile() {
   const [posts] = React.useState([]);
@@ -47,7 +47,7 @@ export default function Profile() {
         </div>
       </div>
       <div className="flex border-b pb-5">
-            <CarouselList />
+            <CarouselUser />
       </div>
       {posts !== null ? (
         <div className="my-5">
