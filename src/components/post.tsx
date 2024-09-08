@@ -1,5 +1,3 @@
-import { Avatar } from "antd";
-import { UserOutlined } from "@ant-design/icons";
 import CarouselPost from "./CarouselImage";
 import IconOutlineHeart from "@/icon/IconOutlineHeart";
 import IconOutlineComments from "@/icon/IconOutlineComments";
@@ -23,8 +21,9 @@ import { FormSchemaComments } from "@/utils/schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { Button } from "./ui/button";
+import AvatarUser from "./Avatar";
 
-const Post = () => {
+export function Post() {
   const [like, setLike] = React.useState<boolean>(false);
   const [showEmoji, setShowEmoji] = React.useState(false);
   const [favorite, setFavorite] = React.useState<boolean>(false);
@@ -37,7 +36,7 @@ const Post = () => {
   });
   // còn thiếu đang chờ rest api từ be
   const onSubmit = async (data: z.infer<typeof FormSchemaComments>) => {
-    setComments((prevComments) =>  [...prevComments, { text: data.text }]);
+    setComments((prevComments) => [...prevComments, { text: data.text }]);
     form.reset();
   };
 
@@ -52,25 +51,25 @@ const Post = () => {
   const handleFavorite = () => {
     setFavorite(!favorite);
   };
+  const getMoreComments = () => {
+      //xử lý khi người dùng click để xem thêm bình luận
+      //bình luận mặc định mình chỉ giới hạn là 3 
+  }
   const renderComments = () => {
-    if(comments.length === 1){
-      return <></>
+    if (comments.length === 0) {
+      return <></>;
     }
     return comments.map((comment, index) => (
       <div key={index} className="flex gap-1">
-        <span className="font-semibold">abc.caaa</span>
-        <span className="text-sm mt-[2px] truncate">{comment.text}</span>
+        <span className="font-semibold">abc.caaa:</span>
+        <span className="text-sm mt-1 truncate">{comment.text}</span>
       </div>
     ));
   };
   return (
     <div className="w-full sm:max-w-[470px]">
       <div>
-        <Avatar
-          className="size-9"
-          style={{ backgroundColor: "#87d068" }}
-          icon={<UserOutlined />}
-        />
+      <AvatarUser/>
         <span className="font-semibold m-1">lf.tlinh</span>
         <span className="text-gray-500">• 6 ngày</span>
       </div>
@@ -86,7 +85,9 @@ const Post = () => {
               <IconOutlineHeart />
             )}
           </div>
-          <IconOutlineComments />
+          <div className="cursor-pointer">
+            <IconOutlineComments />
+          </div>
         </div>
         <div onClick={handleFavorite}>
           {favorite ? <IconFavorite /> : <IconOutlineFavorite />}
@@ -95,13 +96,13 @@ const Post = () => {
       <div className="flex flex-col">
         <span>1.374 lượt thích</span>
         <div className="flex gap-1">
-          <span className="font-semibold">lf.tlinh</span>
-          <span className="text-sm mt-[2px] truncate">
+          <span className="font-semibold">lf.tlinh:</span>
+          <span className="text-sm mt-1 truncate">
             tiffany nguyễn trong vai cô hiệu trưởng/nữ doanh nhân 🤵🏻‍♀️
           </span>
         </div>
-        {comments ? (
-          <span className="font-normal text-gray-400 cursor-pointer">
+        {comments.length > 3 ? (
+          <span onClick={getMoreComments} className="font-normal text-gray-400 cursor-pointer">
             Xem tất cả bình luận
           </span>
         ) : null}
@@ -159,6 +160,8 @@ const Post = () => {
       </Form>
     </div>
   );
-};
+}
+export function ProfilePost(){
+  
+}
 
-export default Post;

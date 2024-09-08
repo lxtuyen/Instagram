@@ -1,4 +1,4 @@
-import UserSuggestedCard from "@/components/userCard/UserSuggestedCard";
+import {UserSuggestedCard} from "@/components/userCard/UserSuggestedCard";
 
 export default function Suggested() {
   return (

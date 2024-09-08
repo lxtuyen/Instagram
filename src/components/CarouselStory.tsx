@@ -68,7 +68,3 @@ export function CarouselUser() {
     </>
   );
 }
-
-export function CarouselStory() {
-  return <></>;
-}

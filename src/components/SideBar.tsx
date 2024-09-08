@@ -8,7 +8,6 @@ import { Input } from "./ui/input";
 import UseDebounce from "@/hooks/useDebounce";
 import { UserSearchCard } from "./userCard/UserSearchCard";
 import IconOutlineHeart2 from "@/icon/IconOutlineHeart2";
-import { IoExitOutline } from "react-icons/io5";
 
 const Sidebar = () => {
   const router = useLocation();
@@ -23,10 +22,6 @@ const Sidebar = () => {
           link={link}
         ></SidebarLink>
       ))}
-      <div className=" hover:bg-gray-100  px-4 py-5 flex items-center gap-3 font-normal text-lg">
-        <IoExitOutline className="size-7" />
-        <span>Đăng xuất</span>
-      </div>
     </div>
   );
 };
