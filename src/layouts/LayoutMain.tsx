@@ -3,13 +3,14 @@ import React from 'react';
 
 interface ILayoutMainProps {
   children: React.ReactNode;
+  sidebar?: boolean;
 }
 
-const LayoutMain: React.FC<ILayoutMainProps> = ({ children }) => {
+const LayoutMain: React.FC<ILayoutMainProps> = ({ children, sidebar }) => {
   return (
     <div className='flex flex-col h-screen overflow-hidden'>
       <div className='flex flex-1 overflow-hidden'>
-        <Sidebar />
+        {sidebar !== false ? <Sidebar /> : null}
         <main className='flex-1 overflow-auto bg-[#FCFCFC]'>
           {children}
         </main>

@@ -5,6 +5,7 @@ import { Register } from '@/pages/auth/register';
 import Home from '@/pages/home';
 import Messages from '@/pages/messages';
 import Suggested from '@/pages/suggested';
+import Story from '@/pages/story';
 import { useContext } from 'react';
 import Profile from '@/pages/profile';
 import { Navigate, useRoutes } from 'react-router-dom';
@@ -16,10 +17,11 @@ export default function useRoutesElements() {
   };*/
 
   const routeElements = useRoutes([
-    { path: '/', element: <LayoutMain children={<Home />} /> },
-    { path: '/messages', element: <LayoutMain children={<Messages />} /> },
-    { path: '/suggested', element: <LayoutMain children={<Suggested />} /> },
-    {
+    { path: '/', element: <LayoutMain sidebar={true} children={<Home />} /> },
+    { path: '/messages', element: <LayoutMain sidebar={true} children={<Messages />} /> },
+    { path: '/suggested', element: <LayoutMain sidebar={true} children={<Suggested />} /> },
+    { path: '/story', element: <LayoutMain sidebar={false} children={<Story />} /> },
+    { 
       path: '/login',
       element: isAuthenticated ? <Navigate to='/' /> : <Login />,
     },
@@ -30,7 +32,7 @@ export default function useRoutesElements() {
     {
       path: '/users',
       element: (   
-          <LayoutMain children={<Profile />} />
+          <LayoutMain sidebar={true} children={<Profile />} />
       ),
     },
     { path: '*', element: <h1>404</h1> },

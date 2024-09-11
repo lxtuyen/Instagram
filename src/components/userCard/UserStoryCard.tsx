@@ -9,9 +9,9 @@ interface ISidebarLinkProps {
   }
 
 export function UserStoryCard({ username}:ISidebarLinkProps) {
-  const [watched] = React.useState<boolean>(false);
+  const [watched] = React.useState<boolean>(true);
   return (
-    <Link  to={"/"} className='flex flex-col items-center p-3 rounded-md'>
+    <Link  to={"/story"} className='flex flex-col items-center p-3 rounded-md'>
       <Avatar className={`${watched ? "border-4 border-blue-700": "border-4 border-gray-500"} `} size="lg" src="https://chatscope.io/storybook/react/assets/zoe-E7ZdmXF0.svg" />
       <span>{username}</span>
     </Link>

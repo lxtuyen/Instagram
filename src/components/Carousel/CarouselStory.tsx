@@ -5,7 +5,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import { UserStoryCard } from "./userCard/UserStoryCard";
+import { UserStoryCard } from "../userCard/UserStoryCard";
 import IconAdd from "@/icon/IconAdd";
 import {
   Dialog,
@@ -15,9 +15,10 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "./ui/dialog";
-import { Button } from "./ui/button";
-import UploadStory from "./Upload";
+} from "../ui/dialog";
+import { Button } from "../ui/button";
+import UploadStory from "../Upload";
+
 
 export function CarouselUser() {
   const handleAdd = () => {};
@@ -56,9 +57,9 @@ export function CarouselUser() {
               key={index}
               className="pl-1 md:basis-1/2 lg:basis-1/5"
             >
-              <div className="p-1">
+              
                 <UserStoryCard username="Cuaaa" />
-              </div>
+              
             </CarouselItem>
           ))}
         </CarouselContent>

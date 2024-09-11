@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import React from "react";
 import IconOutlineCamera from "@/icon/IconOutlineCamera";
 import Container from "@/components/Container";
-import { CarouselUser } from "@/components/CarouselStory";
+import { CarouselUser } from "@/components/Carousel/CarouselStory";
 import { TbMessageCircleFilled } from "react-icons/tb";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { Carousel, Image } from "antd";
@@ -204,8 +204,12 @@ function Post() {
                 </DropdownMenuTrigger>
                 <DropdownMenuContent className="w-52">
                   <DropdownMenuGroup>
-                    <DropdownMenuItem className="hover:bg-gray-200 cursor-pointer">Cập nhật bài viết</DropdownMenuItem>
-                    <DropdownMenuItem className="hover:bg-gray-200 cursor-pointer">Xóa bài viết</DropdownMenuItem>
+                    <DropdownMenuItem className="hover:bg-gray-200 cursor-pointer">
+                      Cập nhật bài viết
+                    </DropdownMenuItem>
+                    <DropdownMenuItem className="hover:bg-gray-200 cursor-pointer">
+                      Xóa bài viết
+                    </DropdownMenuItem>
                   </DropdownMenuGroup>
                 </DropdownMenuContent>
               </DropdownMenu>

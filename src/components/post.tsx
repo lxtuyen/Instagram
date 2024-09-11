@@ -1,4 +1,4 @@
-import CarouselPost from "./CarouselImage";
+import CarouselPost from "./Carousel/CarouselImage";
 import IconOutlineHeart from "@/icon/IconOutlineHeart";
 import IconOutlineComments from "@/icon/IconOutlineComments";
 import IconHeart from "@/icon/IconHeart";

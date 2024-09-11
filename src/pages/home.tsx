@@ -1,5 +1,5 @@
 import { UserCard } from "@/components/userCard/UserSuggestedCard";
-import { CarouselUser } from "@/components/CarouselStory";
+import { CarouselUser } from "@/components/Carousel/CarouselStory";
 import { Link } from "react-router-dom";
 import { Post } from "@/components/Post";
 import React from "react";
@@ -78,7 +78,9 @@ export default function Home() {
               <span>fullname</span>
             </div>
           </div>
-          <span className="hover:text-red-500 text-teal-400 text-center">Đăng xuất</span>
+          <span className="hover:text-red-500 text-teal-400 text-center">
+            Đăng xuất
+          </span>
         </div>
         <div className="flex justify-between py-4">
           <span className="font-semibold text-gray-500 text-lg ">
