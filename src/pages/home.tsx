@@ -1,7 +1,7 @@
 import { UserCard } from "@/components/userCard/UserSuggestedCard";
 import { CarouselUser } from "@/components/Carousel/CarouselStory";
 import { Link } from "react-router-dom";
-import { Post } from "@/components/Post";
+import { Post } from "@/components/post/Post";
 import React from "react";
 import SkeletonTag from "@/components/SkeletonTag";
 import { Avatar } from "antd";
@@ -15,7 +15,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import UploadStory from "@/components/Upload";
+import UploadImg from "@/components/upload/UploadImg";
 import { Button } from "@/components/ui/button";
 
 export default function Home() {
@@ -39,7 +39,7 @@ export default function Home() {
                 src="https://chatscope.io/storybook/react/assets/emily-xzL8sDL2.svg"
               />
               <Input
-                className="bg-gray-200 !cursor-pointer w-2/3 rounded-2xl sm:max-w-[420px]"
+                className="bg-gray-200 !cursor-pointer w-2/3 rounded-2xl sm:max-w-[420px] hover:bg-gray-300"
                 placeholder="Bạn đang nghĩ gì thế?"
               />
             </div>
@@ -56,7 +56,7 @@ export default function Home() {
               className="border-none"
               type="text"
             />
-            <UploadStory />
+            <UploadImg />
             <DialogFooter>
               <Button type="submit">Xác nhận</Button>
             </DialogFooter>
@@ -99,7 +99,7 @@ export default function Home() {
               <SkeletonTag />
             </>
           ) : (
-            <div className="flex gap-5 flex-col">
+            <div className="flex gap-2 flex-col">
               <UserCard fullName="nguyen van a" username="Cuaaa.45" />
               <UserCard fullName="nguyen van a" username="Cuaaa.45" />
               <UserCard fullName="nguyen van a" username="Cuaaa.45" />

@@ -1,11 +1,11 @@
-import CarouselPost from "./Carousel/CarouselImage";
+import CarouselPost from "../Carousel/CarouselImage";
 import IconOutlineHeart from "@/icon/IconOutlineHeart";
 import IconOutlineComments from "@/icon/IconOutlineComments";
 import IconHeart from "@/icon/IconHeart";
 import IconOutlineEmoji from "@/icon/IconOutlineEmoji";
 import IconOutlineFavorite from "@/icon/IconOutlineFavorite";
 import IconFavorite from "@/icon/IconFavorite";
-import { Input } from "./ui/input";
+import { Input } from "../ui/input";
 import Picker from "@emoji-mart/react";
 import data from "@emoji-mart/data";
 import React from "react";
@@ -20,8 +20,8 @@ import { useForm } from "react-hook-form";
 import { FormSchemaComments } from "@/utils/schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { Button } from "./ui/button";
-import AvatarUser from "./Avatar";
+import { Button } from "../ui/button";
+import AvatarUser from "../Avatar";
 
 export function Post() {
   const [like, setLike] = React.useState<boolean>(false);

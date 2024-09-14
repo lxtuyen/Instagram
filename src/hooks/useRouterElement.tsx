@@ -7,7 +7,8 @@ import Messages from '@/pages/messages';
 import Suggested from '@/pages/suggested';
 import Story from '@/pages/story';
 import { useContext } from 'react';
-import Profile from '@/pages/profile';
+import MyProfile from '@/pages/user/myProfile';
+import OtherProfile from '@/pages/user/otherProfile';
 import { Navigate, useRoutes } from 'react-router-dom';
 
 export default function useRoutesElements() {
@@ -30,9 +31,15 @@ export default function useRoutesElements() {
       element: isAuthenticated ? <Navigate to='/' /> : <Register />,
     },
     {
-      path: '/users',
+      path: '/profile',
       element: (   
-          <LayoutMain sidebar={true} children={<Profile />} />
+          <LayoutMain sidebar={true} children={<MyProfile />} />
+      ),
+    },
+    {
+      path: '/profiles',
+      element: (   
+          <LayoutMain sidebar={true} children={<OtherProfile />} />
       ),
     },
     { path: '*', element: <h1>404</h1> },

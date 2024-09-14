@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import React from "react";
+
 import { Button } from "../ui/button";
 import AvatarUser from "../Avatar";
 
@@ -56,13 +57,13 @@ export function UserCard({
     setFollow(!follow);
   };
   return (
-    <div className="flex justify-between items-center hover:bg-gray-100 rounded-md w-full max-w-[500px]">
+    <div className="flex justify-between items-center hover:bg-gray-100 rounded-md w-full max-w-[500px] p-3">
       <Link to={"/"} className="flex hover:text-black items-center space-x-4">
         <AvatarUser />
-        <div className="flex flex-col">
+        <Link to={"/profiles"} className="flex flex-col">
           <span className="font-bold">{username}</span>
           <span>{fullName}</span>
-        </div>
+        </Link>
       </Link>
 
       {follow === true ? (

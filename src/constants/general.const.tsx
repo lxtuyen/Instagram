@@ -47,6 +47,6 @@ export const sidebarLinks: TSidebarLinks[] = [
     title: 'Trang cá nhân',
     icon: <Avatar style={{ backgroundColor: '#87d068' }} icon={<UserOutlined />} />,
     iconIsActive: <Avatar style={{ backgroundColor: '#87d068' }} icon={<UserOutlined />} />,
-    path: '/users',
+    path: '/profile',
   },
 ];

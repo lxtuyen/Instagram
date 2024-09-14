@@ -17,8 +17,7 @@ import {
   DialogTrigger,
 } from "../ui/dialog";
 import { Button } from "../ui/button";
-import UploadStory from "../Upload";
-
+import UploadVideo from "../upload/UploadVideo";
 
 export function CarouselUser() {
   const handleAdd = () => {};
@@ -38,14 +37,14 @@ export function CarouselUser() {
                   <span>Mới</span>
                 </div>
               </DialogTrigger>
-              <DialogContent className="sm:max-w-[425px]">
+              <DialogContent className="sm:max-w-[700px]">
                 <DialogHeader>
                   <DialogTitle>Thêm tin mới</DialogTitle>
                   <DialogDescription>
                     Chia sẻ nhưng kỉ niệm với bạn bè
                   </DialogDescription>
                 </DialogHeader>
-                <UploadStory />
+                <UploadVideo />
                 <DialogFooter>
                   <Button type="submit">Xác nhận</Button>
                 </DialogFooter>
@@ -57,9 +56,7 @@ export function CarouselUser() {
               key={index}
               className="pl-1 md:basis-1/2 lg:basis-1/5"
             >
-              
-                <UserStoryCard username="Cuaaa" />
-              
+              <UserStoryCard username="Cuaaa" />
             </CarouselItem>
           ))}
         </CarouselContent>
