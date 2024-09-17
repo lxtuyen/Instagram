@@ -5,6 +5,7 @@ import IconOutlineCamera from "@/icon/IconOutlineCamera";
 import Container from "@/components/Container";
 import { CarouselUser } from "@/components/Carousel/CarouselStory";
 import PostInProflie from "@/components/post/PostInProflie";
+import { Link } from "react-router-dom";
 
 export default function MyProfile() {
   const [posts] = React.useState<boolean>(false);
@@ -27,7 +28,7 @@ export default function MyProfile() {
               className="bg-gray-200 hover:bg-gray-300"
               variant={"secondary"}
             >
-              Chỉnh sửa trang cá nhân
+              <Link to={"/profile/edit"}>Chỉnh sửa trang cá nhân</Link>
             </Button>
             <Button
               className="bg-gray-200 hover:bg-gray-300"

@@ -21,7 +21,7 @@ export default function AvatarUser() {
       <HoverCardContent className="w-96">
         <div className="">
           <div className="flex gap-2">
-            <Link to={"/"}>
+            <Link to={"/profiles"}>
             <Avatar
               className="size-12"
               src="https://chatscope.io/storybook/react/assets/emily-xzL8sDL2.svg"

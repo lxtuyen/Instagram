@@ -1,3 +1,5 @@
+import { Navigate, useRoutes } from 'react-router-dom';
+
 import { AppContext, AppContextType } from '@/contexts/app.context';
 import LayoutMain from '@/layouts/LayoutMain';
 import { Login } from '@/pages/auth/login';
@@ -9,7 +11,8 @@ import Story from '@/pages/story';
 import { useContext } from 'react';
 import MyProfile from '@/pages/user/myProfile';
 import OtherProfile from '@/pages/user/otherProfile';
-import { Navigate, useRoutes } from 'react-router-dom';
+import EditProfile from '@/pages/user/editProfile';
+
 
 export default function useRoutesElements() {
   const { isAuthenticated } = useContext<AppContextType>(AppContext);
@@ -40,6 +43,12 @@ export default function useRoutesElements() {
       path: '/profiles',
       element: (   
           <LayoutMain sidebar={true} children={<OtherProfile />} />
+      ),
+    },
+    {
+      path: '/profile/edit',
+      element: (   
+          <LayoutMain sidebar={true} children={<EditProfile />} />
       ),
     },
     { path: '*', element: <h1>404</h1> },

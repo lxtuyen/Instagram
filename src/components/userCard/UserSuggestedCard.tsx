@@ -58,13 +58,13 @@ export function UserCard({
   };
   return (
     <div className="flex justify-between items-center hover:bg-gray-100 rounded-md w-full max-w-[500px] p-3">
-      <Link to={"/"} className="flex hover:text-black items-center space-x-4">
+      <div className="flex hover:text-black items-center space-x-4">
         <AvatarUser />
         <Link to={"/profiles"} className="flex flex-col">
           <span className="font-bold">{username}</span>
           <span>{fullName}</span>
         </Link>
-      </Link>
+      </div>
 
       {follow === true ? (
         <span onClick={onClick} className="hover:text-red-800 text-red-400">
