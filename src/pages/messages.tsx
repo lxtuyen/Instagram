@@ -22,27 +22,79 @@ import IconOutlineEmoji from "@/icon/IconOutlineEmoji";
 import Picker from "@emoji-mart/react";
 import data from "@emoji-mart/data";
 import IconOutlineImage from "@/icon/IconOutlineImage";
+import { Image, Upload } from "antd";
+import { toast } from "sonner";
+import type { UploadRequestOption } from "rc-upload/lib/interface";
+import { FaRegTrashAlt } from "react-icons/fa";
 
 type MessageType = {
-  message: string;
+  message?: string;
   direction: "incoming" | "outgoing";
+  imageURL?: string;
 };
 
 export default function Messages() {
   const [show, setShow] = React.useState(true);
   const [showEmoji, setShowEmoji] = React.useState(false);
-  const [messages] = React.useState<MessageType[]>([]);
-  const [searchValue, setSearchValue] = React.useState<string>("");
-  const debounced = UseDebounce(searchValue, 400);
- 
+  const [messages, setMessages] = React.useState<MessageType[]>([]);
+  const [message, setMessage] = React.useState<MessageType>({
+    message: "",
+    direction: "outgoing",
+    imageURL:
+      "",
+  });
+  const debounced = UseDebounce(message?.message, 400);
 
   const addEmoji = async (emoji: { native: string }) => {
-    setSearchValue(debounced + emoji.native);
-    console.log(searchValue);
+    setMessage({
+      message: debounced + emoji.native,
+      direction: "outgoing",
+    });
+  };
+  const handleDelete = () => {
+    setMessage({
+      direction: "outgoing",
+      imageURL: ""
+    })
+  };
+  const handleCustomRequest = async (options: UploadRequestOption) => {
+    const { file, onSuccess, onError } = options;
+    const uploadData = new FormData();
+    uploadData.append("file", file);
+    uploadData.append("upload_preset", "multiLibrary");
+    uploadData.append("upload_name", "");
+    try {
+      const res = await fetch(
+        "https://api.cloudinary.com/v1_1/multi-library/image/upload",
+        {
+          method: "POST",
+          body: uploadData,
+        }
+      );
+      const data = await res.json();
+
+      if (data.url) {
+        setMessage({
+          imageURL: data.url,
+          direction: "outgoing",
+        });
+        onSuccess && onSuccess(data);
+      } else {
+        throw new Error("Upload failed");
+      }
+    } catch (err) {
+      toast.error("Upload failed");
+      onError && onError(err as Error, null);
+    }
   };
   const handleSend = async () => {
-    console.log(debounced);
-  }
+    setMessages([...messages, { message: debounced, direction: "outgoing" }]);
+    setMessage({
+      message: "",
+      direction: "outgoing",
+      imageURL: ""
+    })
+  };
 
   return (
     <div className="relative h-full">
@@ -122,14 +174,39 @@ export default function Messages() {
               <Input
                 placeholder="Nhắn tin..."
                 onChange={(e) => {
-                  setSearchValue(e.target.value);
+                  setMessage({
+                    message: e.target.value,
+                    direction: "outgoing",
+                  });
                 }}
                 className="border-none"
                 type="text"
-                value={searchValue}
+                value={message.message}
               />
-              {searchValue ? <span onClick={handleSend} className="cursor-pointer text-cyan-500 hover:text-cyan-700 font-medium">Gửi</span>: <IconOutlineImage />}
-              
+              {message?.imageURL && (
+                <div className="bottom-[70px] z-[999] absolute flex gap-2 items-center">
+                 <Image
+                  preview={false}
+                  width={150}
+                  src={message.imageURL}
+                  className="h-full inline-block "
+                />      
+                <FaRegTrashAlt className="cursor-pointer" onClick={handleDelete} />  
+                </div>
+               
+              )}
+              {message.message ? (
+                <span
+                  onClick={handleSend}
+                  className="cursor-pointer text-cyan-500 hover:text-cyan-700 font-medium"
+                >
+                  Gửi
+                </span>
+              ) : (
+                <Upload className="cursor-pointer" showUploadList={false} customRequest={handleCustomRequest} name="file">
+                  <IconOutlineImage />
+                </Upload>
+              )}
             </div>
           </div>
         )}
