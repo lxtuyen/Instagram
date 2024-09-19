@@ -36,12 +36,29 @@ type MessageType = {
 export default function Messages() {
   const [show, setShow] = React.useState(true);
   const [showEmoji, setShowEmoji] = React.useState(false);
-  const [messages, setMessages] = React.useState<MessageType[]>([]);
+  const [messages, setMessages] = React.useState<MessageType[]>([
+    {
+      message: "Có hình ảnh ",
+      direction: "incoming",
+      imageURL:
+        "https://res.cloudinary.com/multi-library/image/upload/v1726592218/skqzvopglqwkfu0bj3wy.png",
+    },
+    {
+      message: "có hình ảnh ",
+      direction: "outgoing",
+      imageURL:
+        "https://res.cloudinary.com/multi-library/image/upload/v1726592218/skqzvopglqwkfu0bj3wy.png",
+    },
+    {
+      message: "không có hình ảnh kk",
+      direction: "incoming",
+      imageURL: "",
+    },
+  ]);
   const [message, setMessage] = React.useState<MessageType>({
     message: "",
     direction: "outgoing",
-    imageURL:
-      "",
+    imageURL: "",
   });
   const debounced = UseDebounce(message?.message, 400);
 
@@ -54,8 +71,8 @@ export default function Messages() {
   const handleDelete = () => {
     setMessage({
       direction: "outgoing",
-      imageURL: ""
-    })
+      imageURL: "",
+    });
   };
   const handleCustomRequest = async (options: UploadRequestOption) => {
     const { file, onSuccess, onError } = options;
@@ -88,12 +105,15 @@ export default function Messages() {
     }
   };
   const handleSend = async () => {
-    setMessages([...messages, { message: debounced, direction: "outgoing" }]);
+    setMessages([
+      ...messages,
+      { message: debounced, direction: "outgoing", imageURL: message.imageURL },
+    ]);
     setMessage({
       message: "",
       direction: "outgoing",
-      imageURL: ""
-    })
+      imageURL: "",
+    });
   };
 
   return (
@@ -124,32 +144,35 @@ export default function Messages() {
                 </ConversationHeader.Actions>
               </ConversationHeader>
               <MessageList scrollBehavior="smooth">
-                <Message
-                  avatarSpacer
-                  model={{
-                    message: "Hello my friend",
-                    sentTime: "just now",
-                    sender: "Joe",
-                    direction: "incoming",
-                    position: "single",
-                  }}
-                >
-                  <Avatar
-                    name="Zoe"
-                    status="available"
-                    src="https://chatscope.io/storybook/react/assets/zoe-E7ZdmXF0.svg"
-                    about="hello"
-                  />
-                </Message>
                 {messages.map((m, i) => (
-                  <Message
-                    key={i}
-                    model={{
-                      message: m.message,
-                      direction: m.direction,
-                      position: "single",
-                    }}
-                  />
+                  <>
+                    {m.imageURL && (
+                      <Message
+                        key={i}
+                        model={{
+                          direction: m.direction,
+                          position: "single",
+                        }}
+                      >
+                        <Message.ImageContent
+                          src={m.imageURL}
+                          alt="Sent image"
+                          width={200}
+                        />
+                      </Message>
+                    )}
+                    <Message
+                      key={i}
+                      model={{
+                        direction: m.direction,
+                        position: "single",
+                      }}
+                    >
+                      {m.message && (
+                        <Message.TextContent>{m.message}</Message.TextContent>
+                      )}
+                    </Message>
+                  </>
                 ))}
               </MessageList>
             </ChatContainer>
@@ -185,17 +208,19 @@ export default function Messages() {
               />
               {message?.imageURL && (
                 <div className="bottom-[70px] z-[999] absolute flex gap-2 items-center">
-                 <Image
-                  preview={false}
-                  width={150}
-                  src={message.imageURL}
-                  className="h-full inline-block "
-                />      
-                <FaRegTrashAlt className="cursor-pointer" onClick={handleDelete} />  
+                  <Image
+                    preview={false}
+                    width={150}
+                    src={message.imageURL}
+                    className="h-full inline-block "
+                  />
+                  <FaRegTrashAlt
+                    className="cursor-pointer"
+                    onClick={handleDelete}
+                  />
                 </div>
-               
               )}
-              {message.message ? (
+              {message.message || message.imageURL ? (
                 <span
                   onClick={handleSend}
                   className="cursor-pointer text-cyan-500 hover:text-cyan-700 font-medium"
@@ -203,7 +228,12 @@ export default function Messages() {
                   Gửi
                 </span>
               ) : (
-                <Upload className="cursor-pointer" showUploadList={false} customRequest={handleCustomRequest} name="file">
+                <Upload
+                  className="cursor-pointer"
+                  showUploadList={false}
+                  customRequest={handleCustomRequest}
+                  name="file"
+                >
                   <IconOutlineImage />
                 </Upload>
               )}

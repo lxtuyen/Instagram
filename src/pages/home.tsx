@@ -5,18 +5,6 @@ import { Post } from "@/components/post/Post";
 import React from "react";
 import SkeletonTag from "@/components/SkeletonTag";
 import { Avatar } from "antd";
-import { Input } from "@/components/ui/input";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
-import UploadImg from "@/components/upload/UploadImg";
-import { Button } from "@/components/ui/button";
 
 export default function Home() {
   const [loading, setLoading] = React.useState<boolean>(true);
@@ -31,37 +19,6 @@ export default function Home() {
         <div className="flex justify-center">
           <CarouselUser />
         </div>
-        <Dialog>
-          <DialogTrigger asChild>
-            <div className="flex gap-2 items-center justify-center ">
-              <Avatar
-                className="size-12"
-                src="https://chatscope.io/storybook/react/assets/emily-xzL8sDL2.svg"
-              />
-              <Input
-                className="bg-gray-200 !cursor-pointer w-2/3 rounded-2xl sm:max-w-[420px] hover:bg-gray-300"
-                placeholder="Bạn đang nghĩ gì thế?"
-              />
-            </div>
-          </DialogTrigger>
-          <DialogContent className="sm:max-w-[425px]">
-            <DialogHeader>
-              <DialogTitle>Thêm bài viết mới</DialogTitle>
-              <DialogDescription>
-                Chia sẻ nhưng kỉ niệm với bạn bè của mình.
-              </DialogDescription>
-            </DialogHeader>
-            <Input
-              placeholder="Bạn đang nghĩ gì thế?"
-              className="border-none"
-              type="text"
-            />
-            <UploadImg />
-            <DialogFooter>
-              <Button type="submit">Xác nhận</Button>
-            </DialogFooter>
-          </DialogContent>
-        </Dialog>
         <div className="flex justify-center">
           <Post />
         </div>

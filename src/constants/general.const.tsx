@@ -7,10 +7,6 @@ import IconHome from '@/icon/IconHome';
 import IconOutlineSearch from '@/icon/IconOutlineSearch';
 import IconSearch from '@/icon/IconSearch';
 import IconOutlineCompass from '@/icon/IconOutlineCompass';
-import IconOutlineHeart from '@/icon/IconOutlineHeart';
-import IconHeart from '@/icon/IconHeart';
-import { UserOutlined } from '@ant-design/icons';
-import { Avatar } from 'antd';
 
 export const sidebarLinks: TSidebarLinks[] = [
 
@@ -37,16 +33,5 @@ export const sidebarLinks: TSidebarLinks[] = [
     icon: <IconOutlineMessage />,
     iconIsActive: <IconMessage  />,
     path: '/messages',
-  },
-  {
-    title: 'Thông báo',
-    icon: <IconOutlineHeart />,
-    iconIsActive: <IconHeart  />,
-  },
-  {
-    title: 'Trang cá nhân',
-    icon: <Avatar style={{ backgroundColor: '#87d068' }} icon={<UserOutlined />} />,
-    iconIsActive: <Avatar style={{ backgroundColor: '#87d068' }} icon={<UserOutlined />} />,
-    path: '/profile',
   },
 ];
