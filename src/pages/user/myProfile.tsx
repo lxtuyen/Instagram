@@ -30,12 +30,6 @@ export default function MyProfile() {
             >
               <Link to={"/profile/edit"}>Chỉnh sửa trang cá nhân</Link>
             </Button>
-            <Button
-              className="bg-gray-200 hover:bg-gray-300"
-              variant={"secondary"}
-            >
-              Xem kho lưu trữ
-            </Button>
           </div>
           <div className="flex gap-3">
             <span>0 bài viết</span>

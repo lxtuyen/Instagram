@@ -3,6 +3,7 @@ import { useState } from "react";
 import type { UploadRequestOption } from "rc-upload/lib/interface";
 import { toast } from "sonner";
 import { LoadingOutlined, InboxOutlined } from "@ant-design/icons";
+import { uploadVideo } from "@/utils/upload";
 
 export default function UploadVideo() {
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -13,34 +14,17 @@ export default function UploadVideo() {
   const { Dragger } = Upload;
 
   const handleCustomRequest = async (options: UploadRequestOption) => {
-    const { file, onSuccess, onError } = options;
-    setIsLoading(true);
-    const uploadData = new FormData();
-    uploadData.append("file", file);
-    uploadData.append("upload_preset", "multiLibrary");
-    uploadData.append("upload_name", "");
     try {
-      const res = await fetch(
-        "https://api.cloudinary.com/v1_1/multi-library/video/upload",
-        {
-          method: "POST",
-          body: uploadData,
-        }
-      );
-      const data = await res.json();
-
-      if (data.url) {
-        setFileList((prevList) => [...prevList, data.url]);
-        onSuccess && onSuccess(data);
+      const url = await uploadVideo(options);
+      setIsLoading(true);
+      if (url) {
+        setFileList((prevList) => [...prevList, url]);
         setIsLoading(false);
-      } else {
-        setIsLoading(false);
-        throw new Error("Upload failed");
+        toast.success("Upload thành công");
       }
-    } catch (err) {
+    } catch (error) {
       setIsLoading(false);
-      toast.error("Upload failed");
-      onError && onError(err as Error, null);
+      toast.error("Upload thất bại");
     }
   };
 

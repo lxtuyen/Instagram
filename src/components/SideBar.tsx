@@ -132,7 +132,13 @@ function SidebarLink({ link, isActive }: ISidebarLinkProps) {
         ) : (
           <span>{link.icon}</span>
         )}
-        <span>{link.title}</span>
+        {link.title === "Tin nhắn" ? (
+          <Badge size="default" count={1}>
+          <span className="pr-3">{link.title}</span>
+          </Badge>
+        ) : (
+          <span>{link.title}</span>
+        )}
       </Link>
     </>
   ) : (

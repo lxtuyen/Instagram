@@ -26,6 +26,7 @@ import { Image, Upload } from "antd";
 import { toast } from "sonner";
 import type { UploadRequestOption } from "rc-upload/lib/interface";
 import { FaRegTrashAlt } from "react-icons/fa";
+import { uploadImage } from "@/utils/upload";
 
 type MessageType = {
   message?: string;
@@ -75,33 +76,17 @@ export default function Messages() {
     });
   };
   const handleCustomRequest = async (options: UploadRequestOption) => {
-    const { file, onSuccess, onError } = options;
-    const uploadData = new FormData();
-    uploadData.append("file", file);
-    uploadData.append("upload_preset", "multiLibrary");
-    uploadData.append("upload_name", "");
     try {
-      const res = await fetch(
-        "https://api.cloudinary.com/v1_1/multi-library/image/upload",
-        {
-          method: "POST",
-          body: uploadData,
-        }
-      );
-      const data = await res.json();
+      const url = await uploadImage(options);
 
-      if (data.url) {
+      if (url) {
         setMessage({
-          imageURL: data.url,
+          imageURL: url,
           direction: "outgoing",
         });
-        onSuccess && onSuccess(data);
-      } else {
-        throw new Error("Upload failed");
       }
-    } catch (err) {
-      toast.error("Upload failed");
-      onError && onError(err as Error, null);
+    } catch (error) {
+      toast.error("Upload thất bại");
     }
   };
   const handleSend = async () => {

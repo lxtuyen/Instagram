@@ -5,40 +5,24 @@ import { toast } from "sonner";
 import type { UploadRequestOption } from "rc-upload/lib/interface";
 import { LoadingOutlined } from "@ant-design/icons";
 import { Flex, Spin } from "antd";
+import { uploadImage } from "@/utils/upload";
 
 export default function UploadImg() {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [fileList, setFileList] = useState<string[]>(["https://res.cloudinary.com/multi-library/image/upload/v1726243364/yafcabvazwhhd0f6getr.png"]);
 
   const handleCustomRequest = async (options: UploadRequestOption) => {
-    const { file, onSuccess, onError } = options;
-    setIsLoading(true);
-    const uploadData = new FormData();
-    uploadData.append("file", file);
-    uploadData.append("upload_preset", "multiLibrary");
-    uploadData.append("upload_name", "");
     try {
-      const res = await fetch(
-        "https://api.cloudinary.com/v1_1/multi-library/image/upload",
-        {
-          method: "POST",
-          body: uploadData,
-        }
-      );
-      const data = await res.json();
-      
-      if (data.url) {
-        setFileList((prevList) => [...prevList, data.url]);
-        onSuccess && onSuccess(data);
+      const url = await uploadImage(options);
+      setIsLoading(true);
+      if (url) {
+        setFileList((prevList) => [...prevList, url]);
         setIsLoading(false);
-      } else {
-        setIsLoading(false);
-        throw new Error("Upload failed");
+        toast.success("Upload thành công");
       }
-    } catch (err) {
+    } catch (error) {
       setIsLoading(false);
-      toast.error("Upload failed");
-      onError && onError(err as Error, null);
+      toast.error("Upload thất bại");
     }
   };
 
@@ -53,7 +37,6 @@ export default function UploadImg() {
     const updatedFileList = fileList.filter((_, i) => i !== index);
     setFileList(updatedFileList);
   };
-
 
   return (
     <>
