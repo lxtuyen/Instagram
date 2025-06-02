@@ -1,6 +1,6 @@
 ## <a name="introduction">🤖 Introduction</a>
 
-Build a Clone Instagram with React
+Build a Social media UI with React
 
 ## <a name="tech-stack">⚙️ Tech Stack</a>
 
